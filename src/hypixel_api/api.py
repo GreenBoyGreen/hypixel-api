@@ -4,7 +4,7 @@ from .exceptions import InvalidApiKeyException, RequestLimitReachedException
 from .player import Player
 
 
-class Api:
+class Hypixel:
     def __init__(self, key):
         self.key = key
         key_info = self.test_key()["record"]

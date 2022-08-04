@@ -8,6 +8,10 @@ Hypixel API is a Python Package used to interact with the Hypixel API
 
 - ```Convert between UUID and Username```
 
+###### Player Features:
+
+- ```Get Player's First and Last Login Dates```
+
 ###### API Key Features:
 
 - ```Get Username and UUID from API Key```
