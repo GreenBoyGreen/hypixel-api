@@ -23,5 +23,3 @@ class Hypixel:
             case 429:
                 raise RequestLimitReachedException("Request Limit Reached")
 
-    def login_message(self):
-        print(f"Logged in as {self.owner.username} ({self.owner.uuid}) with \"{self.key}\"")
