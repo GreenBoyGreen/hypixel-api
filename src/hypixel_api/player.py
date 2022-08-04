@@ -35,3 +35,29 @@ class Player:
     def set_data(self, request_json):
         self.first_login = datetime.datetime.fromtimestamp(request_json["firstLogin"] / 1000)
         self.last_login = datetime.datetime.fromtimestamp(request_json["lastLogin"] / 1000)
+        self.one_time_achievements = request_json["achievementsOneTime"]
+        social_media = request_json["socialMedia"]["links"]
+        try:
+            self.discord = social_media["DISCORD"]
+        except KeyError:
+            self.discord = None
+        try:
+            self.twitter = social_media["TWITTER"]
+        except KeyError:
+            self.twitter = None
+        try:
+            self.youtube = social_media["YOUTUBE"]
+        except KeyError:
+            self.youtube = None
+        try:
+            self.instagram = social_media["INSTAGRAM"]
+        except KeyError:
+            self.instagram = None
+        try:
+            self.twitch = social_media["TWITCH"]
+        except KeyError:
+            self.twitch = None
+        try:
+            self.hypixel = social_media["HYPIXEL"]
+        except KeyError:
+            self.hypixel = None
