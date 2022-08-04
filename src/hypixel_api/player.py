@@ -35,6 +35,7 @@ class Player:
     def set_data(self, request_json):
         self.first_login = datetime.datetime.fromtimestamp(request_json["firstLogin"] / 1000)
         self.last_login = datetime.datetime.fromtimestamp(request_json["lastLogin"] / 1000)
+        self.last_logout = datetime.datetime.fromtimestamp(request_json["lastLogout"] / 1000)
         self.one_time_achievements = request_json["achievementsOneTime"]
         social_media = request_json["socialMedia"]["links"]
         try:
