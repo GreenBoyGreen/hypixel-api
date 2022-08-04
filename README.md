@@ -10,7 +10,7 @@ Hypixel API is a Python Package used to interact with the Hypixel API
 
 ###### Player Features:
 
-- ```Get Player's First and Last Login Dates```
+- ```Get Player's First and Last Login Dates as well as their Last Logout Date```
 
 ###### API Key Features:
 
