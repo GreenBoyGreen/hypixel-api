@@ -32,7 +32,7 @@ First, go on Hypixel, run the command ```/api new``` and save the Key you get in
 
 After that, download the Package using:
 ```commandline
-pip install -i https://test.pypi.org/simple /hypixel-api
+pip install -i https://test.pypi.org/simple/ hypixel-api
 ```
 
 Then Import the Package:
@@ -57,6 +57,7 @@ player = hypixel_api.Player(your_uuid)
 ```
 You can also convert a Username to a UUID:
 ```python
+from hypixel_api.utilities import UUID_from_username
 player = hypixel_api.Player(hypixel_api.UUID_from_username(your_username))
 ```
 After that, call the get_data() Method to obtain Player Data:
