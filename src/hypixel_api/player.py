@@ -1,4 +1,5 @@
 import datetime
+from tokenize import String
 import requests
 import re
 
@@ -8,8 +9,8 @@ from .exceptions import InvalidApiKeyException, InvalidUUIDException, RequestLim
 
 
 class Player:
-    def __init__(self, UUID):
-        self.UUID = UUID
+    def __init__(self, UUID=String):
+        self.UUID = UUID.replace("-", "")
         self.test_UUID()
         self.username = username_from_UUID(self.UUID)
 
@@ -30,7 +31,16 @@ class Player:
                 raise InvalidApiKeyException("Invalid API Key")
             case 429:
                 raise RequestLimitReachedException("Request Limit Reached")
+        friends_request = requests.get(f"https://api.hypixel.net/friends?key={hypixel.key}&uuid={self.UUID}")
+        match friends_request.status_code:
+            case 200:
+                self.friends = friends_request.json()["records"]
+            case 403:
+                raise InvalidApiKeyException("Invalid API Key")
+            case 429:
+                raise RequestLimitReachedException("Request Limit Reached")
     
+
     def set_data(self, request_json):
         if request_json == None:
             raise UnknownPLayerException("Unknown Player")
@@ -126,3 +136,16 @@ class Player:
                     return "[MVP+]"
         else:
             return ""
+
+
+    def get_friends(self):
+        friends = list()
+        friends_uuid = list()
+        for i in self.friends:
+            if i["uuidSender"] == self.UUID:
+                friends.append(username_from_UUID(i['uuidReceiver']))
+                friends_uuid.append({i['uuidReceiver']})
+            else:
+                friends.append(username_from_UUID(i['uuidSender']))
+                friends_uuid.append({i['uuidSender']})
+        return friends, friends_uuid
