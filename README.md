@@ -7,6 +7,7 @@ Hypixel API is a Python Package used to interact with the Hypixel API
 ###### General Features:
 
 - ```Convert between UUID and Username```
+- ```Get Achievements, Challenges and Quests```
 
 ###### Player Features:
 
