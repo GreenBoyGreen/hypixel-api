@@ -8,11 +8,7 @@ class Api:
     def __init__(self, key):
         self.key = key
         key_info = self.test_key()["record"]
-        self.owner = Player(
-            key_info["owner"],
-            requests.get(f"https://playerdb.co/api/player/minecraft/{key_info['owner']}").json()["data"]["player"][
-                "username"]
-        )
+        self.owner = Player(key_info["owner"])
         self.limit = key_info["limit"]
         self.queriesInPastMin = key_info["queriesInPastMin"]
         self.totalQueries = key_info["totalQueries"]
