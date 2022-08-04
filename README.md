@@ -56,5 +56,5 @@ player.get_data(connection)
 ```
 Finally, print out your data:
 ```python
-print(player.first_login)
+print(player.rank)
 ```
