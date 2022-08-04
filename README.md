@@ -1,4 +1,4 @@
-# Hypixel API
+# Hypixel API 
 
 Hypixel API is a Python Package used to interact with the Hypixel API
 
@@ -32,7 +32,7 @@ First, go on Hypixel, run the command ```/api new``` and save the Key you get in
 
 After that, download the Package using:
 ```commandline
-pip install -i https://test.pypi.org/simple/ hypixel-api
+pip install hypixel-api-py
 ```
 
 Then Import the Package:

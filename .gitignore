@@ -2,5 +2,5 @@
 dist
 .idea
 .vscode
-**/hypixel_api.egg-info
+**/hypixel_api_py.egg-info
 **/test.py

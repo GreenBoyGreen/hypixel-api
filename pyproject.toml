@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hypixel-api"
+name = "hypixel-api-py"
 version = "0.0.0.0.1"
 authors = [
   { name="GBG", email="idkletmeinnow@gmail.com" },
@@ -18,7 +18,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-dependencies = ["requests"]
+dependencies = ["requests>=2.28.1"]
 
 [project.urls]
 "Homepage" = "https://github.com/GreenBoyGreen/Hypixel-Api"
