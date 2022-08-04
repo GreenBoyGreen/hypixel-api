@@ -12,6 +12,14 @@ Hypixel API is a Python Package used to interact with the Hypixel API
 
 - ```Get Player's First and Last Login Dates as well as their Last Logout Date```
 - ```Get Player's Rank```
+- ```Get Player's Friends```
+
+###### Guild Features:
+- ```Get Guild By ID, Player or Name```
+- ```Get Guild Members```
+- ```Get Guild Coins and EXP```
+- ```Get Guild Members and Ranks```
+- ```Get Guild Tag and preferred Games```
 
 ###### API Key Features:
 

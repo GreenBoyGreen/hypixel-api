@@ -149,3 +149,4 @@ class Player:
                 friends.append(username_from_UUID(i['uuidSender']))
                 friends_uuid.append({i['uuidSender']})
         return friends, friends_uuid
+    
