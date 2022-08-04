@@ -8,3 +8,7 @@ class InvalidUUIDException(Exception):
 
 class RequestLimitReachedException(Exception):
     pass
+
+
+class UnknownPLayerException(Exception):
+    pass

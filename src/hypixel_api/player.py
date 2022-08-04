@@ -1,11 +1,10 @@
-from collections import namedtuple
 import datetime
-
 import requests
+import re
 
 from hypixel_api.utilities import username_from_UUID
 
-from .exceptions import InvalidApiKeyException, InvalidUUIDException, RequestLimitReachedException
+from .exceptions import InvalidApiKeyException, InvalidUUIDException, RequestLimitReachedException, UnknownPLayerException
 
 
 class Player:
@@ -33,32 +32,97 @@ class Player:
                 raise RequestLimitReachedException("Request Limit Reached")
     
     def set_data(self, request_json):
-        self.first_login = datetime.datetime.fromtimestamp(request_json["firstLogin"] / 1000)
-        self.last_login = datetime.datetime.fromtimestamp(request_json["lastLogin"] / 1000)
-        self.last_logout = datetime.datetime.fromtimestamp(request_json["lastLogout"] / 1000)
-        self.one_time_achievements = request_json["achievementsOneTime"]
-        social_media = request_json["socialMedia"]["links"]
+        if request_json == None:
+            raise UnknownPLayerException("Unknown Player")
+        try:
+            self.language = request_json["userLanguage"]
+        except:
+            self.language = None
+        self.rank = self.get_rank(request_json)
+        try:
+            self.first_login = datetime.datetime.fromtimestamp(request_json["first_login"] / 1000)
+        except Exception:
+            self.first_login = None
+        try:
+            self.last_login = datetime.datetime.fromtimestamp(request_json["lastLogin"] / 1000)
+        except Exception:
+            self.last_login = None
+        try:
+            self.last_logout = datetime.datetime.fromtimestamp(request_json["lastLogout"] / 1000)
+        except Exception:
+            self.last_logout = None
+        try:
+            self.one_time_achievements = request_json["achievementsOneTime"]
+        except Exception:
+            self.one_time_achievements = None
+        try:
+            social_media = request_json["socialMedia"]["links"]
+        except Exception:
+            social_media = None
         try:
             self.discord = social_media["DISCORD"]
-        except KeyError:
+        except Exception:
             self.discord = None
         try:
             self.twitter = social_media["TWITTER"]
-        except KeyError:
+        except Exception:
             self.twitter = None
         try:
             self.youtube = social_media["YOUTUBE"]
-        except KeyError:
+        except Exception:
             self.youtube = None
         try:
             self.instagram = social_media["INSTAGRAM"]
-        except KeyError:
+        except Exception:
             self.instagram = None
         try:
             self.twitch = social_media["TWITCH"]
-        except KeyError:
+        except Exception:
             self.twitch = None
         try:
             self.hypixel = social_media["HYPIXEL"]
-        except KeyError:
+        except Exception:
             self.hypixel = None
+
+
+    def get_rank(self, request_json):
+        if "prefix" in request_json:
+            return re.sub("§.", "", request_json["prefix"])
+        elif "rank" in request_json:
+            match request_json["rank"]:
+                case "ADMIN":
+                    return "[ADMIN]"
+                case "GAME_MASTER":
+                    return "[GM]"
+                case "MODERATOR":
+                    return "[MOD]"
+                case "YOUTUBER":
+                    return "[YOUTUBE]"
+                case "NORMAL":
+                    return ""
+                case _:
+                    return request_json["rank"]
+        elif "monthlyPackageRank" in request_json:
+            return "[MVP++]"
+        elif "newPackageRank" in request_json:
+            match request_json["newPackageRank"]:
+                case "VIP":
+                    return "[VIP]"
+                case "VIP_PLUS":
+                    return "[VIP+]"
+                case "MVP":
+                    return "[MVP]"
+                case "MVP_PLUS":
+                    return "[MVP+]"
+        elif "PackageRank" in request_json:
+            match request_json["PackageRank"]:
+                case "VIP":
+                    return "[VIP]"
+                case "VIP_PLUS":
+                    return "[VIP+]"
+                case "MVP":
+                    return "[MVP]"
+                case "MVP_PLUS":
+                    return "[MVP+]"
+        else:
+            return ""
