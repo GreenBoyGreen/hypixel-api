@@ -11,6 +11,7 @@ Hypixel API is a Python Package used to interact with the Hypixel API
 ###### Player Features:
 
 - ```Get Player's First and Last Login Dates as well as their Last Logout Date```
+- ```Get Player's Rank```
 
 ###### API Key Features:
 
@@ -23,7 +24,7 @@ First, go on Hypixel, run the command ```/api new``` and save the Key you get in
 
 After that, download the Package using:
 ```commandline
-pip install -i https://test.pypi.org/simple/hypixel-api
+pip install -i https://test.pypi.org/simple /hypixel-api
 ```
 
 Then Import the Package:
