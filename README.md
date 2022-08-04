@@ -39,7 +39,7 @@ connection = hypixel_api.Hypixel(your_api_key)
 You can verify that your authentication has worked by using the created Player Object:
 ```python
 owner = connection.owner
-print(f"Authenticated as {owner.username} ({owner.UUID} with the key {connection.key}")
+print(f"Authenticated as {owner.username} ({owner.UUID}) with the key {connection.key}")
 ```
 
 To start accessing player data, create a Player Object by using a UUID:
