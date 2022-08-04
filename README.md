@@ -2,6 +2,8 @@
 
 Hypixel API is a Python Package used to interact with the Hypixel API
 
+#### Note: This project is very early in development
+
 ### Current Features:
 
 ###### General Features:
